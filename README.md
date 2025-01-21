@@ -1,2 +1,2 @@
 # DataStructures-Algorithms
-DSA problems
+This repository contains the DSA problems that I am currently practicing. 
