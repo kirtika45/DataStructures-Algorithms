@@ -1,0 +1,102 @@
+class Node{
+    constructor(val){
+    this.val = val
+    this.next = null
+    }
+}
+
+class Stack{
+    constructor(val){
+        const newNode = new Node(val)
+        this.top = newNode
+        this.length = 1
+    }
+
+push(val){
+    const newNode = new Node(val)
+    if(!this.top){
+        this.top = newNode
+        this.length = 1
+    }
+    else{
+        newNode.next = this.top
+        this.top = newNode
+        this.length++
+    }
+    return this
+    
+}
+
+pop(){
+    if(!this.top) return undefined
+   
+        let temp = this.top
+        this.top = this.top.next
+        temp.next = null; 
+    this.length--
+    return temp
+}
+
+
+}
+
+function reversedString(inputString){
+    const stack = new Stack();
+
+    for (let char of inputString){
+        stack.push(char)
+    }
+    let reversedString = "";
+    while(stack.length-1>0){
+        reversedString += stack.pop().val
+    }
+    return reversedString
+}
+
+function isBalancedParanthesis(inputString){
+    const stack  = [];
+    let openingBracket = ['(','[','{'];
+    let closingBracket = [')',']','}'];
+    for (let char of inputString){
+        if(openingBracket.includes(char)){
+            stack.push(char);
+        }
+        else if(closingBracket.includes(char)){
+            const lastOpenedBracket = stack.pop()
+            let matchingOpeningBracket = openingBracket[closingBracket.indexOf(char)]
+            if(lastOpenedBracket!= matchingOpeningBracket){
+                return false
+            }
+        }
+    }
+
+
+return stack.length===0;
+    
+}
+
+function sortStack(stack){
+    const temp = new Stack();
+    while(stack.length!=null){
+        let current = stack.pop()
+        while(!temp.length==null && temp.top.val > current){
+            stack.push(temp.pop())
+        }
+        temp.push(current)
+}
+    while(!temp.length==null){
+        stack.push(temp.pop())
+    }
+}
+
+// console.log(reversedString("hello"))
+// console.log(isBalancedParanthesis("{}{}"))
+// console.log(isBalancedParanthesis("{}{}("))
+let first = new Stack(7);
+first.push(2);
+first.push(12);
+first.push(-5);
+first.push(8);
+console.log("Original Stack:",JSON.stringify(first,null,2))
+sortStack(first)
+console.log("Original Stack:",JSON.stringify(first,null,2))
