@@ -1,0 +1,11 @@
+function factorialOf(n){
+    if(n > 1){
+    return n * factorialOf(n-1)
+    }
+    else{
+        return 1
+    }
+}
+
+
+console.log(factorialOf(7));

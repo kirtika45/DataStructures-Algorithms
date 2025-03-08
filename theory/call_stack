@@ -1,0 +1,9 @@
+function two(){
+    console.log('hello2');
+}
+function one(){
+    two();
+    console.log("hello1");
+}
+
+one();
